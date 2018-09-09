@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution;
+package com.hou.leetcode.solution.dp;
 
 public class LongestIncreasingSubsequence300Solution {
 
