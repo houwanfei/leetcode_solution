@@ -1,6 +1,23 @@
 package com.hou.leetcode.solution;
 
 public class UniquePaths62Solution {
+    /**
+     * 求起点到终点路的条路 每步只能下或右运动
+     *  A  B  C
+     *
+     *  D  E  F
+     *
+     *  G  H  I
+     * 思路：动态规划问题 最后一个点I由F或H到达，所以path[I] = path[H] + path[F]
+     * 得出推论
+     * 1. path[0][0] = 1
+     * 2. i == 0 path[i][j] = path[i][j-1]
+     * 3. j == 0 path[i][j] = path[i-1][j]
+     * 4. i>0 & j>0 path[i][j] = path[i][j-1] + path[i-1][j]
+     * @param m
+     * @param n
+     * @return
+     */
     public int solution(int m, int n){
         if (m<=0 || n <= 0){
             return 0;
