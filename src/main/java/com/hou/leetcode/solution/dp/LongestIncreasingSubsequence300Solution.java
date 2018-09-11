@@ -7,7 +7,7 @@ public class LongestIncreasingSubsequence300Solution {
      * o(n^2)解法
      * 思路：动态规划思想，第i个最大递增子序列可以表示为
      * d[i]表示第i位的最长递增子序列
-     * d[i] = max(d[k] ... d[k + o])+1 其中num[k] < num[i] 否则d[i] = 1
+     * d[i] = max(d[k]...)+1 其中num[k] < num[i] 否则d[i] = 1
      * @param nums
      * @return
      */
