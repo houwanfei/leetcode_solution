@@ -10,6 +10,13 @@ import java.util.List;
  */
 public class ThreeSum15Solution {
 
+    /**
+     * 时间复杂的：O(n^2)
+     * 思路：从2sum中可以得知2sum经过排序后可以做到O(n)
+     * 所以3sum可以先固定一位之后将3sum问题转换为2sum问题
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> solution(int[] nums){
         List<List<Integer>> res = new ArrayList<>();
         if (nums == null || nums.length <3)
