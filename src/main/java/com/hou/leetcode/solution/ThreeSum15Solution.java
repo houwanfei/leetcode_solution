@@ -1,5 +1,7 @@
 package com.hou.leetcode.solution;
 
+import com.hou.leetcode.solution.util.QuickSortUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +24,7 @@ public class ThreeSum15Solution {
         if (nums == null || nums.length <3)
             return res;
         //排序
-        sort(0, nums.length-1, nums);
+        QuickSortUtil.sort(0, nums.length-1, nums);
         for (int i=0; i<nums.length; i++){
             int newSum = 0 - nums[i];
             int start = i+1;
@@ -54,29 +56,6 @@ public class ThreeSum15Solution {
         return false;
     }
 
-    private void sort(int start, int end, int[] nums){
-        if (start >= end)
-            return;
-        int mark = nums[start];
-        int low = start;
-        int high = end;
-        while (start < end){
-            while (end > start && nums[end] >= mark){
-                end--;
-            }
-            if (start < end)
-                nums[start++] = nums[end];
-
-            while (start < end && nums[start] <= mark){
-                start++;
-            }
-            if (end > start)
-                nums[end--] = nums[start];
-        }
-        nums[end] = mark;
-        sort(low, end, nums);
-        sort(end+1, high, nums);
-    }
 
     public static void main(String[] args) {
         int[] nums = {-1, 0, 1, 2, -1, -4};
