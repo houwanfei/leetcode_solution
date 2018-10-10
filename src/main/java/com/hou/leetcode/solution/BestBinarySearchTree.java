@@ -16,6 +16,17 @@ package com.hou.leetcode.solution;
 public class BestBinarySearchTree {
     double[] p;
     double[] q;
+    int[][] root;
+    Node rt = null;
+
+    class Node{
+        String key;
+        Node left;
+        Node right;
+        public Node(String key){
+            this.key = key;
+        }
+    }
 
     public double countCost(int i, int j){
         if (j == i-1){
@@ -27,18 +38,54 @@ public class BestBinarySearchTree {
             w += q[k] + p[k];
         }
         for (int r = i; r<=j; r++){
+            if (countCost(i, r-1) + countCost(r+1, j) + w < min){
+                min = countCost(i, r-1) + countCost(r+1, j) + w;
+                root[i][j] = r;
+            }
             min = Math.min(countCost(i, r-1) + countCost(r+1, j) + w, min);
         }
         return min;
     }
 
+    public void buildTree(int i, int j, Node p, int lr){
+        if (j == i-1){
+            if (lr == 1){
+                p.left = new Node("d" + (i-1));
+                return;
+            } else {
+                p.right = new Node("d" + j);
+                return;
+            }
+        }
+
+        Node node = new Node("k" + root[i][j]);
+        if (rt == null && p == null){
+            p = node;
+            rt = p;
+        } else {
+            if (lr == 1){
+                p.left = node;
+                p = p.left;
+            } else {
+                p.right = node;
+                p = p.right;
+            }
+        }
+        buildTree(i, root[i][j]-1, p, 1);
+        buildTree(root[i][j]+1, j, p, 2);
+    }
+
     public static void main(String[] args) {
         double[] q = new double[]{0.05, 0.1, 0.05, 0.05, 0.05, 0.1};
         double[] p = new double[]{0, 0.15, 0.1, 0.05, 0.1, 0.2};
+        int[][] root = new int[p.length][p.length];
         BestBinarySearchTree binarySearchTree = new BestBinarySearchTree();
         binarySearchTree.p = p;
         binarySearchTree.q = q;
+        binarySearchTree.root = root;
 
         System.out.println(binarySearchTree.countCost(1, 5));
+        binarySearchTree.buildTree(1, 5, null, 0);
+        System.out.println();
     }
 }
