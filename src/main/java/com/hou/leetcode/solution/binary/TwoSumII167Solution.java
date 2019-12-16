@@ -24,6 +24,26 @@ public class TwoSumII167Solution {
         return new int[]{numbers.length-1, numbers.length};
     }
 
+    /**
+     * hash解法
+     * @param numbers
+     * @param target
+     * @return
+     */
+    private int[] twoSumHash(int[] numbers, int target){
+
+    }
+
+    /**
+     * 双指针解法
+     * @param numbers
+     * @param target
+     * @return
+     */
+    private int[] twoSumTwoPointer(int[] numbers, int target) {
+
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[]{2,7,11,15};
         int[] nums2 = new int[]{12,83,104,129,140,184,199,300,306,312,321,325,341,344,349,356,370,405,423,444,446,465,471,491,500,506,508,530,539,543,569,591,606,607,612,614,623,627,645,662,670,685,689,726,731,737,744,747,764,773,778,787,802,805,811,819,829,841,879,905,918,918,929,955,997};
