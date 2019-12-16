@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution.array;
+package com.hou.leetcode.solution.binary;
 
 public class FindFirstLastPosition34Solution {
     public int[] searchRange(int[] nums, int target) {

@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution.array;
+package com.hou.leetcode.solution.binary;
 
 public class SearchInsertPosition35Solution {
     public int searchInsert(int[] nums, int target) {
