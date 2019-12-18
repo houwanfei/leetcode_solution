@@ -31,7 +31,7 @@ public class TwoSumII167Solution {
      * @return
      */
     private int[] twoSumHash(int[] numbers, int target){
-
+        return numbers;
     }
 
     /**
@@ -41,7 +41,7 @@ public class TwoSumII167Solution {
      * @return
      */
     private int[] twoSumTwoPointer(int[] numbers, int target) {
-
+        return null;
     }
 
     public static void main(String[] args) {
