@@ -1,5 +1,8 @@
 package com.hou.leetcode.solution.binary;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Description
  * @auther houwf
@@ -31,7 +34,18 @@ public class TwoSumII167Solution {
      * @return
      */
     private int[] twoSumHash(int[] numbers, int target){
-        return numbers;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i=0; i < numbers.length; i++) {
+            map.put(numbers[i], i);
+            if (map.get(target - numbers[i]) != null) {
+                if (i<map.get(target - numbers[i])) {
+                    return new int[]{i,map.get(target - numbers[i])};
+                } else {
+                    return new int[]{map.get(target - numbers[i]), i};
+                }
+            }
+        }
+        return null;
     }
 
     /**
@@ -41,6 +55,16 @@ public class TwoSumII167Solution {
      * @return
      */
     private int[] twoSumTwoPointer(int[] numbers, int target) {
+        int low =0, hi=numbers.length-1;
+        while (low < hi) {
+            if ((numbers[low] + numbers[hi])> target) {
+                hi--;
+            } else if ((numbers[low] + numbers[hi])< target){
+                low++;
+            } else {
+                return new int[]{low, hi};
+            }
+        }
         return null;
     }
 
