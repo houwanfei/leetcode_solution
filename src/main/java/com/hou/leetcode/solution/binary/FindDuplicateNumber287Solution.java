@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution.array;
+package com.hou.leetcode.solution.binary;
 
 /**
  * @Description

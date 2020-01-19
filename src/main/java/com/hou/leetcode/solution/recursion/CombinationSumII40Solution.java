@@ -1,18 +1,18 @@
-package com.hou.leetcode.solution.array;
+package com.hou.leetcode.solution.recursion;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class CombinationSum39Solution {
-    List<List<Integer>> res = null;
+public class CombinationSumII40Solution {
+    HashSet<List<Integer>> res = null;
     int target = 0;
     int[] candidates = null;
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        this.res = new ArrayList<>();
+        Arrays.sort(candidates);
+        this.res = new HashSet<>();
         this.target = target;
         this.candidates = candidates;
         combinationSum(candidates, new ArrayList<>(), 0, 0);
-        return res;
+        return new ArrayList<>(res);
     }
 
     private void combinationSum(int[] candidates, List<Integer> result, int currSum, int index) {
@@ -25,14 +25,14 @@ public class CombinationSum39Solution {
         }
         for (int i=index; i< candidates.length; i++) {
             result.add(candidates[i]);
-            combinationSum(candidates, result, currSum+candidates[i], i);
+            combinationSum(candidates, result, currSum+candidates[i], i+1);
             result.remove(result.size()-1);
         }
     }
 
     public static void main(String[] args) {
-        int[] candidates = new int[]{2,3,5};
-        CombinationSum39Solution solution = new CombinationSum39Solution();
+        int[] candidates = new int[]{10,1,2,7,6,1,5};
+        CombinationSumII40Solution solution = new CombinationSumII40Solution();
         List<List<Integer>> res = solution.combinationSum(candidates, 8);
         System.out.println();
 

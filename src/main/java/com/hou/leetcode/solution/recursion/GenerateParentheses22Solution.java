@@ -1,8 +1,7 @@
-package com.hou.leetcode.solution;
+package com.hou.leetcode.solution.recursion;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class GenerateParentheses22Solution {
     List<String> resList = null;
