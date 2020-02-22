@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution;
+package com.hou.leetcode.solution.recursion;
 
 public class HanNuoSolution {
     public void hanNuo(int n, char ori, char mid, char res) {

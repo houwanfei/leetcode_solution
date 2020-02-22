@@ -1,7 +1,6 @@
-package com.hou.leetcode.solution.array;
+package com.hou.leetcode.solution.recursion;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
