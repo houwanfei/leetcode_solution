@@ -29,9 +29,28 @@ public class UnboundedKnapsackSolution {
         return dp[v.length][W];
     }
 
+    public int solution2(int[] v, int[] w, int W) {
+        if (v.length == 0 || w.length == 0) {
+            return 0;
+        }
+
+        int[] dp = new int[W+1];
+        for (int j=0; j<=W; j++) {
+            dp[j] = 0;
+        }
+
+        for (int i=0; i<v.length; i++) {
+            for (int j=w[i]; j<=W; j++) {
+                dp[j] = Math.max(dp[j], dp[j - w[i]]+v[i]);
+            }
+        }
+        return dp[W];
+    }
+
     public static void main(String[] args) {
         int[] v = new int[]{4, 5, 3};
         int[] w = new int[]{3, 4, 2};
         System.out.println(new UnboundedKnapsackSolution().solution(v, w, 7));
+        System.out.println(new UnboundedKnapsackSolution().solution2(v, w, 7));
     }
 }
