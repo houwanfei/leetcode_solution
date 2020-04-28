@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution.recursion;
+package com.hou.leetcode.solution.backtracking;
 
 /**
  * @Description
