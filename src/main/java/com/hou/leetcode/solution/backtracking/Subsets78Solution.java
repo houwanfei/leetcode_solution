@@ -1,17 +1,15 @@
-package com.hou.leetcode.solution.recursion;
+package com.hou.leetcode.solution.backtracking;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * @Description
  * @auther houwf
- * @create 2020-01-08 14:29
+ * @create 2020-01-06 11:57
  */
-public class SubsetsII90Solution {
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        Arrays.sort(nums);
+public class Subsets78Solution {
+    public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         backtracking(res, nums, 0, new ArrayList<>());
         return res;
@@ -26,17 +24,13 @@ public class SubsetsII90Solution {
             tmp.add(nums[i]);
             backtracking(res, nums, i+1, tmp);
             tmp.remove(tmp.size()-1);
-
-            while (i < nums.length-1 && nums[i] == nums[i+1]) {
-                i++;
-            }
         }
     }
 
     public static void main(String[] args) {
-        SubsetsII90Solution solution = new SubsetsII90Solution();
+        Subsets78Solution solution = new Subsets78Solution();
         int[] nums = new int[]{1, 2, 2};
-        List<List<Integer>> res = solution.subsetsWithDup(nums);
+        List<List<Integer>> res = solution.subsets(nums);
         System.out.println();
     }
 }
