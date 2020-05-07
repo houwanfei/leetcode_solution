@@ -1,7 +1,7 @@
 package com.hou.leetcode.solution.dp;
 
 /**
- * @Description
+ * @Description 0/1背包问题，看是否能平分数组，只需要找到一个子数组能满足值为sum/2，所以背包的容量为sum/2，而每个数组可以选择或不选择
  * @auther houwf
  * @create 2020-03-25 13:23
  */
