@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution;
+package com.hou.leetcode.solution.array;
 
 import com.hou.leetcode.solution.base.QuickSortUtil;
 

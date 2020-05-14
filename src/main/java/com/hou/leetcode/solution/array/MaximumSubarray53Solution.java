@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution;
+package com.hou.leetcode.solution.array;
 
 public class MaximumSubarray53Solution {
 

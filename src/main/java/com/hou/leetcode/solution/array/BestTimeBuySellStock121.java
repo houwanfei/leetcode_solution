@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution;
+package com.hou.leetcode.solution.array;
 
 public class BestTimeBuySellStock121 {
     public int solution(int[] nums){

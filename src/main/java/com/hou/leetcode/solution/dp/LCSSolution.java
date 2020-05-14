@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution;
+package com.hou.leetcode.solution.dp;
 
 public class LCSSolution {
     public int solution(String s1, String s2){

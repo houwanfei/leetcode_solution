@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution;
+package com.hou.leetcode.solution.binary;
 
 public class Sqrt69Solution {
     public int mySqrt(int x) {
