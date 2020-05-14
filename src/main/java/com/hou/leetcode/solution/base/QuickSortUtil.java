@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution.util;
+package com.hou.leetcode.solution.base;
 
 /**
  * @auther houwanfei

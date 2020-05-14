@@ -1,6 +1,6 @@
 package com.hou.leetcode.solution;
 
-import com.hou.leetcode.solution.util.QuickSortUtil;
+import com.hou.leetcode.solution.base.QuickSortUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
