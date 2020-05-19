@@ -53,12 +53,22 @@ public class PopulatingNextRightPointersEachNodeII117Solution {
                 next = next.next;
             }
             if (next != null) {
-                System.out.println("root.right:" + root.right.val + " next:" + next.val);
                 root.right.next = next.left != null?next.left:next.right;
             }
         }
-        connect(root.left);
+
+        /**
+         * 这里要先计算右子树,否则，当计算10的next时，6还没和7连上导致查找到5时因为5没有子节点，查5的next为6,6未和7连接
+         *                      1
+         *                     / \
+         *                    2   3
+         *                   / \  /\
+         *                   4 5  6 7
+         *                  /       / \
+         *                 10       8  9
+         */
         connect(root.right);
+        connect(root.left);
         return root;
     }
 }
