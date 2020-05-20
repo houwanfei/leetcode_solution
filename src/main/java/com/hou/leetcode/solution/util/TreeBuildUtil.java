@@ -39,19 +39,32 @@ public class TreeBuildUtil {
         return head;
     }
 
-    public static Integer[] buildArrayFromTree(TreeNode head) {
-        List<Integer> nums = new ArrayList<>();
-        helper(nums, head, 0);
-        return nums;
-    }
-
-    private static void helper(List<Integer> nums, TreeNode node, int index) {
-        nums[index] = node.getVal();
-        if (node.getLeft() != null) {
-            helper(nums, node.getLeft(), 2*index+1);
+    public static List<Integer> buildArrayFromTree(TreeNode head) {
+        List<Integer> list = new ArrayList<>();
+        if (head == null) {
+            return list;
         }
-        if (node.getRight() != null) {
-            helper(nums, node.getRight(), 2*index+2);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(head);
+        list.add(head.getVal());
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node.getLeft() == null && node.getRight() == null) {
+                continue;
+            }
+            if (node.getLeft() == null) {
+                list.add(null);
+            } else {
+                queue.offer(node.getLeft());
+                list.add(node.getLeft().getVal());
+            }
+            if (node.getRight() == null) {
+                list.add(null);
+            } else {
+                queue.offer(node.getRight());
+                list.add(node.getRight().getVal());
+            }
         }
+        return list;
     }
 }

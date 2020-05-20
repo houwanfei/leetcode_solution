@@ -2,6 +2,8 @@ package com.hou.leetcode.solution.tree;
 
 import com.hou.leetcode.solution.util.TreeBuildUtil;
 
+import java.util.List;
+
 /**
  * @Description
  * @auther houwf
@@ -39,7 +41,7 @@ public class FlattenBinaryTreeLinkedList114Solution {
         TreeNode head = TreeBuildUtil.buildTreeFromArray(nums);
         FlattenBinaryTreeLinkedList114Solution solution = new FlattenBinaryTreeLinkedList114Solution();
         solution.flatten(head);
-        Integer[] res = TreeBuildUtil.buildArrayFromTree(head);
+        List<Integer> res = TreeBuildUtil.buildArrayFromTree(head);
         System.out.println();
     }
 }
