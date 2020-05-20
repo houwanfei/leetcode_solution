@@ -4,6 +4,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class PopulatingNextRightPointersEachNodeII117Solution {
+    /**
+     * 不满足常数空间要求
+     * @param root
+     * @return
+     */
     public Node connect2(Node root) {
         if (root == null) {
             return root;
@@ -69,6 +74,37 @@ public class PopulatingNextRightPointersEachNodeII117Solution {
          */
         connect(root.right);
         connect(root.left);
+        return root;
+    }
+
+    /**
+     * 思路：依然是层次遍历，如果上一层已经连接好了，可以利用上一层的关系连接下一层
+     * 只需要两个变量，一个记录当前操作层的虚拟头结点（也就是该层最左边的元素），一个记录当前操作元素的前一个元素，也就是相邻左边的元素
+     * @param root
+     * @return
+     */
+    public Node connect3(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Node node = root;
+        Node vNode = new Node();
+        Node pre;
+        while (node != null) {
+            vNode.next = null;
+            pre = vNode;
+            for (Node p = node; p != null; p = p.next) {
+                if (p.left != null) {
+                    pre.next = p.left;
+                    pre = pre.next;
+                }
+                if (p.right != null) {
+                    pre.next = p.right;
+                    pre = pre.next;
+                }
+            }
+            node = vNode.next;
+        }
         return root;
     }
 }

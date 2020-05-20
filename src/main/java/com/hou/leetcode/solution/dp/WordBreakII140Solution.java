@@ -1,8 +1,6 @@
 package com.hou.leetcode.solution.dp;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class WordBreakII140Solution {
     /**
@@ -51,10 +49,33 @@ public class WordBreakII140Solution {
         }
     }
 
+    public List<String> wordBreak2(String s, List<String> wordDict) {
+        if (wordDict == null || wordDict.size() == 0)
+            return new ArrayList<>();
+        List<String>[] dp = new ArrayList[s.length() + 1];
+        Set<String> ws = new HashSet<>(wordDict);
+        dp[s.length()] = new ArrayList<>();
+        dp[s.length()].add("");
+        return dfs(ws, dp, 0, s);
+    }
+
+    private List<String> dfs(Set<String> ws, List<String>[] dp, int idx, String s) {
+        if (idx == s.length() || dp[idx] != null) return dp[idx];
+        List<String> res = new ArrayList<>();
+        for (int j = idx + 1; j <= s.length(); j++) {
+            if (ws.contains(s.substring(idx, j))) {
+                List<String> tmp = dfs(ws, dp, j, s);
+                for (String str : tmp) res.add(s.substring(idx, j) + (str.length() == 0 ? "" : " ") + str);
+            }
+        }
+        dp[idx] = res;
+        return res;
+    }
+
     public static void main(String[] args) {
-        List<String> strs = Arrays.asList("apple", "pen", "applepen", "pine", "pineapple");
+        List<String> strs = Arrays.asList("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa");
         WordBreakII140Solution solution = new WordBreakII140Solution();
-        List<String> res = solution.wordBreak("pineapplepenapple", strs);
+        List<String> res = solution.wordBreak2("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", strs);
         System.out.println();
     }
 }
