@@ -39,10 +39,10 @@ public class TreeBuildUtil {
         return head;
     }
 
-    public static List<Integer> buildArrayFromTree(TreeNode head) {
+    public static String buildArrayFromTree(TreeNode head) {
         List<Integer> list = new ArrayList<>();
         if (head == null) {
-            return list;
+            return "[]";
         }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(head);
@@ -65,6 +65,15 @@ public class TreeBuildUtil {
                 list.add(node.getRight().getVal());
             }
         }
-        return list;
+        StringBuilder sb =new StringBuilder();
+        sb.append("[");
+        for (int i=0; i<list.size(); i++) {
+            sb.append(list.get(i));
+            if (i < list.size()-1) {
+                sb.append(",");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }

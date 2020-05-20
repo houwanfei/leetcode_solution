@@ -41,7 +41,6 @@ public class FlattenBinaryTreeLinkedList114Solution {
         TreeNode head = TreeBuildUtil.buildTreeFromArray(nums);
         FlattenBinaryTreeLinkedList114Solution solution = new FlattenBinaryTreeLinkedList114Solution();
         solution.flatten(head);
-        List<Integer> res = TreeBuildUtil.buildArrayFromTree(head);
-        System.out.println();
+        System.out.println(TreeBuildUtil.buildArrayFromTree(head));
     }
 }
