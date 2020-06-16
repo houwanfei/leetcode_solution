@@ -1,5 +1,8 @@
 package com.hou.leetcode.solution.backtracking;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Description
  * @auther houwf
@@ -10,35 +13,31 @@ public class FrogJump403Solution {
         if (stones.length < 2 || stones[1] != 1) {
             return false;
         }
-        return backtracking(stones, 1, 1);
+        return dfs(new HashMap<>(), stones, 1, 1);
     }
 
     /**
-     * 回溯法，超时
+     * dfs
      * @param stones
      * @param index
-     * @param k
      * @return
      */
-    private boolean backtracking(int[] stones, int index, int k) {
-        if (index == stones.length-1){
+    private boolean dfs(Map<String, Boolean> memo, int[] stones, int index, int k) {
+        String key = index + "_" + k;
+        if (index >= stones.length-1){
             return true;
-        } else if (index > stones.length-1) {
-            return false;
+        } else if (memo.get(key) != null) {
+            return memo.get(key);
         }
-
-        boolean result = false;
-        for (int i=k-1; i<=k+1; i++) {
-            int j=index+1;
-            while (j<stones.length-1 && (stones[index] + i) > stones[j]) {
-                j++;
-            }
-            if (stones[index]+i == stones[j]) {
-                System.out.println("index :" + index + " k:" + i + " j:" + j);
-                result = result || backtracking(stones, j, i);
+        for (int i = index+1; i<stones.length; i++) {
+            int len = stones[i] - stones[index];
+            if (len >= k-1 && len <= k+1 && dfs(memo, stones, i, len)) {
+                memo.putIfAbsent(key, true);
+                return true;
             }
         }
-        return result;
+        memo.putIfAbsent(key, false);
+        return false;
     }
 
     public boolean canCross2(int[] stones) {
@@ -66,7 +65,7 @@ public class FrogJump403Solution {
     }
 
     public static void main(String[] args) {
-        int[] stones = new int[]{0,1,2,3,4,8,9,11};
-        System.out.println(new FrogJump403Solution().canCross2(stones));
+        int[] stones = new int[]{0,1,3,5,6,8,12,17};
+        System.out.println(new FrogJump403Solution().canCross(stones));
     }
 }
