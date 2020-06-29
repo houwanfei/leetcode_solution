@@ -9,6 +9,7 @@ public class MaximumSubarraySumOneDeletion1186Solution {
     /**
      * 运行超时
      * 改版后没有超时，但是依然很慢，改动主要是每次计算当前元素连续子数组最大和时利用了前一个元素计算结果
+     * 写得太复杂 整理为maximumSum3
      * @param arr
      * @return
      */
@@ -86,8 +87,27 @@ public class MaximumSubarraySumOneDeletion1186Solution {
         return max;
     }
 
+    public int maximumSum3(int[] arr) {
+        int[] dpl = new int[arr.length];
+        int[] dpr = new int[arr.length];
+        dpl[0] = arr[0];
+        dpr[arr.length-1] = arr[arr.length-1];
+        int max = dpl[0];
+        for (int i=1; i<arr.length; i++) {
+            dpl[i] = Math.max(dpl[i-1]+arr[i], arr[i]);
+            max = Math.max(dpl[i], max);//计算没有删除元素的最大值
+        }
+        for (int i=arr.length-2; i>=0; i--) {
+            dpr[i] = Math.max(dpr[i+1]+arr[i], arr[i]);
+        }
+        for (int i=1; i<arr.length-2; i++) {
+            max = Math.max(dpl[i-1]+dpr[i+1], max);
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
-        int[] nums = new int[]{1};
-        System.out.println(new MaximumSubarraySumOneDeletion1186Solution().maximumSum2(nums));
+        int[] nums = new int[]{1,-2,-2, 3};
+        System.out.println(new MaximumSubarraySumOneDeletion1186Solution().maximumSum3(nums));
     }
 }
