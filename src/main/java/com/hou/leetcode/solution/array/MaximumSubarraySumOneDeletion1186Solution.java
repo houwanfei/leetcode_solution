@@ -66,8 +66,28 @@ public class MaximumSubarraySumOneDeletion1186Solution {
         }
     }
 
+    /**
+     * 思路：每一个元素都有两种情况，目前最大子数组删除过一个元素，没有删除过元素，分情况讨论
+     * 删除过一个元素:最大的值 max(deleted+arr[i], noDeleted)
+     * 没有删除过元素：最大值 max(noDeleted+arr[i], arr[i])
+     * 比较两种情况取最大值
+     * @param arr
+     * @return
+     */
+    public int maximumSum2(int[] arr) {
+        int noDeleted = arr[0];
+        int deleted = 0;
+        int max = noDeleted;
+        for (int i=1; i<arr.length; i++) {
+            deleted = Math.max(deleted+arr[i], noDeleted);
+            noDeleted = Math.max(noDeleted+arr[i], arr[i]);
+            max = Math.max(max, Math.max(deleted, noDeleted));
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
-        int[] nums = new int[]{1,-2};
-        System.out.println(new MaximumSubarraySumOneDeletion1186Solution().maximumSum(nums));
+        int[] nums = new int[]{1};
+        System.out.println(new MaximumSubarraySumOneDeletion1186Solution().maximumSum2(nums));
     }
 }
