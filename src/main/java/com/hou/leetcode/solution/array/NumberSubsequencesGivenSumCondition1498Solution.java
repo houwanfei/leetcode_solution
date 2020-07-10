@@ -8,6 +8,7 @@ import java.util.Arrays;
  * @create 2020-07-09 16:17
  */
 public class NumberSubsequencesGivenSumCondition1498Solution {
+
     public int numSubseq(int[] nums, int target) {
         int mod = (int) (Math.pow(10, 9)+7);
         Arrays.sort(nums);
@@ -30,21 +31,26 @@ public class NumberSubsequencesGivenSumCondition1498Solution {
         return sumCount;
     }
 
+    /**
+     * 思路：题目要求的是子序列，那么我们一个区间内，最小值
+     * @param nums
+     * @param target
+     * @return
+     */
     public int numSubseq2(int[] nums, int target) {
+        int[] pows = new int[nums.length];
         int mod = (int) (Math.pow(10, 9)+7);
+        pows[0] = 1;
+        for (int i=1; i<pows.length;i++) {
+            pows[i] = (pows[i-1]*2)%mod;
+        }
         Arrays.sort(nums);
         int sumCount = 0;
         int start = 0;
         int end = nums.length-1;
         while (start <= end) {
             if (nums[start]+nums[end] <= target) {
-                int len = end-start;
-                int sum = 1;
-                while (len>0) {
-                    sum = (sum * 2) % mod;
-                    len--;
-                }
-                sumCount = (sumCount + sum) % mod;
+                sumCount = (sumCount + pows[end-start]) % mod;
                 start++;
             } else {
                 end--;
