@@ -32,7 +32,8 @@ public class NumberSubsequencesGivenSumCondition1498Solution {
     }
 
     /**
-     * 思路：题目要求的是子序列，那么我们一个区间内，最小值
+     * 思路：题目要求的是子序列，那么一个区间内，数字必然在最小值和最大值之间，只要求出最小值最大值之间有多少元素，就可以知道有多少子序列为2^元素数
+     * 通过排序，就可以求得最小值和最大值的位置差就是元素个数
      * @param nums
      * @param target
      * @return
