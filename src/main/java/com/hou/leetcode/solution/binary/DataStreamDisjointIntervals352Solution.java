@@ -2,6 +2,7 @@ package com.hou.leetcode.solution.binary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @Description
@@ -31,7 +32,14 @@ public class DataStreamDisjointIntervals352Solution {
             }
         }
         if (left >= intervals.size()) {
-            intervals.add(new ArrayList<Integer>(){{add(val);add(val);}});
+            if (intervals.get(intervals.size()-1).get(1) == (val-1)) {
+                intervals.get(intervals.size()-1).set(1, val);
+            } else {
+                intervals.add(new ArrayList<Integer>() {{
+                    add(val);
+                    add(val);
+                }});
+            }
             return;
         }
         List<Integer> interval = intervals.get(left);
@@ -76,16 +84,9 @@ public class DataStreamDisjointIntervals352Solution {
 
     public static void main(String[] args) {
         DataStreamDisjointIntervals352Solution solution = new DataStreamDisjointIntervals352Solution();
-        solution.addNum(6);
-        solution.addNum(6);
-        solution.addNum(0);
-        solution.addNum(0);
-        solution.addNum(4);
-        solution.addNum(8);
-        solution.addNum(7);
-        solution.addNum(6);
-        solution.addNum(4);
-        solution.addNum(7);
+        for (int i=0; i<1000; i++) {
+            solution.addNum(new Random().nextInt(100));
+        }
         System.out.println();
     }
 }
