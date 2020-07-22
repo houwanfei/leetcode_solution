@@ -1,4 +1,4 @@
-package com.hou.leetcode.solution.base;
+package com.hou.leetcode.solution.heap;
 
 public class Heap<K extends Comparable<K>> {
     private K[] arr;
