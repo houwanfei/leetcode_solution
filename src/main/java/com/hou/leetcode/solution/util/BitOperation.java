@@ -148,13 +148,13 @@ public class BitOperation {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,5,1,1};
-        System.out.println(missingNumber(nums));
-        System.out.println(sumOptimize(11, 3));
-        System.out.println(reverseBits(5));
+        int[] nums = new int[]{3,2,2,1,1};
+//        System.out.println(missingNumber(nums));
+//        System.out.println(sumOptimize(11, 3));
+//        System.out.println(reverseBits(5));
         System.out.println(majorElement(nums));
-        System.out.println(singleNumber(nums));
+//        System.out.println(singleNumber(nums));
         String[] words = new String[]{"abcw", "baz", "foo", "bar", "xtfn", "abcdef"};
-        System.out.println(maxProduct(words));
+//        System.out.println(maxProduct(words));
     }
 }
