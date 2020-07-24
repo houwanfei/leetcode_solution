@@ -74,29 +74,6 @@ public class BitOperation {
     }
 
     /**
-     * 问题：数组多数数
-     * 思路：统计数组每个数的每一位，如果该位的计数大于len/2，则该位肯定是结果的位，循环统计32个位
-     * @param nums
-     * @return
-     */
-    public static int majorElement(int[] nums) {
-        int count=0, mask=1, res=0;
-        for (int i=0; i<32; i++) {
-            count = 0;
-            for (int j=0; j<nums.length; j++) {
-                if ((nums[j]&mask) > 0) {
-                    count++;
-                }
-            }
-            if (count > nums.length/2) {
-                res |= mask;
-            }
-            mask <<= 1;
-        }
-        return res;
-    }
-
-    /**
      * 问题：数组单个数，数组的所有数都出现3次除了一个数
      * 思路：统计数组每个数的每一位，如果该位的计数%出现的次数不等于0，则该位肯定是结果的位，循环统计32个位
      * @param nums
@@ -152,7 +129,6 @@ public class BitOperation {
 //        System.out.println(missingNumber(nums));
 //        System.out.println(sumOptimize(11, 3));
 //        System.out.println(reverseBits(5));
-        System.out.println(majorElement(nums));
 //        System.out.println(singleNumber(nums));
         String[] words = new String[]{"abcw", "baz", "foo", "bar", "xtfn", "abcdef"};
 //        System.out.println(maxProduct(words));
