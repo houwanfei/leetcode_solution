@@ -79,6 +79,11 @@ public class CountSmallerNumbersAfterSelf315Solution {
                 +rangeQuery(segTree, mid+1, right, target,2*index+1, i, j);
     }
 
+    /**
+     * 借助归并排序，每次排序后 判断左区间的每一个元素大于右区间的元素个数
+     * @param nums
+     * @return
+     */
     public List<Integer> countSmaller3(int[] nums) {
         List<Integer> res = new ArrayList<>();
         if (nums.length == 0) {
