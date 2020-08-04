@@ -59,6 +59,7 @@ public class DeleteAndEarn740Solution {
      * 递归-备忘录
      * 核心思想：先排序，这样 pick-1肯定在pick的左边，pick+1肯定在pick的右边，pick肯定被选出，因为pick+1、pick-1都被删除，pick不可能被删除
      * 因此通过pick将余下的数分为左右区间，分别求最大值
+     * 计算量还是很大
      * @param nums
      * @param i
      * @param j
@@ -96,17 +97,33 @@ public class DeleteAndEarn740Solution {
         return memo[i][j] = max;
     }
 
+    /**
+     * 转换为小偷偷房子问题 删除num-1 和num+1的数就相当于不能偷相邻的房子
+     * @param nums
+     * @return
+     */
+    public int deleteAndEarn3(int[] nums) {
+        int[] dp = new int[10002];
+        for (int num : nums) {
+            dp[num] += num;
+        }
+        for (int i=2; i<dp.length; i++) {
+            dp[i] = Math.max(dp[i-1], dp[i-2]+dp[i]);
+        }
+        return dp[10001];
+    }
+
     public static void main(String[] args) {
         DeleteAndEarn740Solution solution = new DeleteAndEarn740Solution();
         Random random = new Random();
         StringBuilder stringBuilder = new StringBuilder();
-        int n = 100;
+        int n = 10000;
         int[] nums = new int[n];
         for (int i = 0; i < n; i++) {
             nums[i] = random.nextInt(10000);
             stringBuilder.append(nums[i] + ",");
         }
         System.out.println(stringBuilder.toString());
-        System.out.println(solution.deleteAndEarn2(nums));
+        System.out.println(solution.deleteAndEarn3(nums));
     }
 }
