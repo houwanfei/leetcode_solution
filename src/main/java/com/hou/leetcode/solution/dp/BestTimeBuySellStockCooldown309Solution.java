@@ -1,5 +1,6 @@
 package com.hou.leetcode.solution.dp;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -37,6 +38,33 @@ public class BestTimeBuySellStockCooldown309Solution {
         return Math.max(dp[prices.length-1][0],Math.max(dp[prices.length-1][1], dp[prices.length-1][2]));
     }
 
+    /**
+     * dp 思路：以第i天是否拥有股票来做状态，dp为第i天的利润
+     * 状态转移
+     * i有一支股票，那么这支股票可能是从i天买的，如果是今天买的那么前一天肯定是冻结的，也可能是从i-1天来的
+     * dp[i][1] = max(dp[i-1][1], dp[i-2][0]-prices[i])
+     * i没有股票，那么可能是i天卖了，也可能是前一天就没有
+     * dp[i][0] = max(dp[i-1][1] + prices[i], dp[i-1][0])
+     * @param prices
+     * @return
+     */
+    public int maxProfit2(int[] prices) {
+        if (prices.length == 0) {
+            return 0;
+        }
+        int[][] dp = new int[prices.length][2];//0-没有股票 1-有股票
+
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+        dp[1][0] = Math.max(dp[0][1]+prices[1], dp[0][0]);
+        dp[1][1] = Math.max(dp[0][1], -prices[1]);
+        for (int i=2; i<prices.length; i++) {
+            dp[i][0] = Math.max(dp[i-1][1]+prices[i], dp[i-1][0]);
+            dp[i][1] = Math.max(dp[i-1][1], dp[i-2][0]-prices[i]);
+        }
+        return Math.max(dp[prices.length-1][0], dp[prices.length-1][1]);
+    }
+
     public static void main(String[] args) {
         BestTimeBuySellStockCooldown309Solution solution = new BestTimeBuySellStockCooldown309Solution();
         int N = 100;
@@ -49,5 +77,6 @@ public class BestTimeBuySellStockCooldown309Solution {
         }
         System.out.println(stringBuilder.toString());
         System.out.println(solution.maxProfit(prices));
+        System.out.println(solution.maxProfit2(prices));
     }
 }
