@@ -15,6 +15,16 @@ public class CheapestFlightsWithinKStops787Solution {
         return res == Integer.MAX_VALUE?-1:res;
     }
 
+    /**
+     * 递归+备忘录
+     * @param flights
+     * @param src
+     * @param dst
+     * @param K
+     * @param tmp
+     * @param memo
+     * @return
+     */
     private int helper(int[][] flights, int src, int dst, int K, List<Integer> tmp, Map<String, Integer> memo) {
         if (src == dst) {
             return 0;
