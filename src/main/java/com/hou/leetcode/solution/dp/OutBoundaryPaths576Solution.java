@@ -45,24 +45,48 @@ public class OutBoundaryPaths576Solution {
     }
 
     public int findPaths2(int m, int n, int N, int i, int j) {
+        if (N == 0) {
+            return 0;
+        }
+        int mod = (int)Math.pow(10, 9) + 7;
         int[][][] dp = new int[m][n][N];
+
         for (int k=0; k<m; k++) {
-            for (int l=0; l<n; l++) {
-                for (int o=0; o<N; o++) {
-                    if (k==0||k==m-1 || l==0 || l==n-1 || o==0) {
-                        dp[k][l][o] = 1;
-                        continue;
+            dp[k][0][0] = 1;
+            dp[k][n-1][0] = dp[k][n-1][0]+1;
+        }
+        for (int l=0; l<n; l++) {
+            dp[0][l][0] = dp[0][l][0]+1;
+            dp[m-1][l][0] = dp[m-1][l][0]+1;
+        }
+        for (int o=1; o<N; o++) {
+            for (int k = 0; k < m; k++) {
+                for (int l = 0; l < n; l++) {
+                    dp[k][l][o] = dp[k][l][0];
+                    if (k != 0) {
+                        dp[k][l][o] = (dp[k][l][o] + dp[k - 1][l][o - 1]) % mod;
                     }
-                    dp[k][l][o] =
+                    if (l != 0) {
+                        dp[k][l][o] = (dp[k][l][o] + dp[k][l - 1][o - 1]) % mod;
+                    }
+                    if (l != n - 1) {
+                        dp[k][l][o] = (dp[k][l][o] + dp[k][l + 1][o - 1]) % mod;
+                    }
+                    if (k != m - 1) {
+                        dp[k][l][o] = (dp[k][l][o] + dp[k + 1][l][o - 1]) % mod;
+                    }
                 }
             }
         }
+        return dp[i][j][N-1];
     }
 
     public static void main(String[] args) {
         OutBoundaryPaths576Solution solution = new OutBoundaryPaths576Solution();
         System.out.println("begin:" + System.currentTimeMillis());
-        System.out.println(solution.findPaths(1, 1, 0, 0, 0));
+        System.out.println(solution.findPaths(1, 2, 50, 0, 0));
         System.out.println("end:" + System.currentTimeMillis());
+        System.out.println(solution.findPaths2(1, 2, 50, 0, 0));
+        System.out.println("end2:" + System.currentTimeMillis());
     }
 }
