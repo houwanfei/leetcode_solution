@@ -61,7 +61,11 @@ public class DiceRollSimulation1223Solution {
         for (int i=1; i<n; i++) {
             for (int j=0; j<6; j++) {
                 dp[i][j] = 0;
-                for (int k=1; k<=rollMax[j] && i-k>=0; k++) {
+                for (int k=1; k<=rollMax[j]; k++) {
+                    if (i-k==-1) {
+                        dp[i][j] = (dp[i][j] + 1)%mod;
+                        break;
+                    }
                     for (int m=0; m<6; m++) {
                         if (m == j) {
                             continue;
@@ -83,7 +87,8 @@ public class DiceRollSimulation1223Solution {
         int[] rollMax = new int[]{15,15,15,15,15,13};
         System.out.println("begin:" + System.currentTimeMillis());
         System.out.println(solution.dieSimulator(5000, rollMax));
-        System.out.println(solution.dieSimulator2(5000, rollMax));
         System.out.println("end:" + System.currentTimeMillis());
+        System.out.println(solution.dieSimulator2(5000, rollMax));
+        System.out.println("end2:" + System.currentTimeMillis());
     }
 }
