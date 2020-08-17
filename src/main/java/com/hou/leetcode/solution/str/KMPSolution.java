@@ -42,6 +42,6 @@ public class KMPSolution {
 
     public static void main(String[] args) {
         KMPSolution solution = new KMPSolution();
-        System.out.println(solution.match("adweasdababacd", "abab"));
+        System.out.println(solution.match("adweasdababbacd", "ababb"));
     }
 }
