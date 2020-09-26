@@ -22,6 +22,11 @@ public class HouseRobberIII337Solution {
         return max;
     }
 
+    /**
+     * 模仿偷东西1
+     * @param root
+     * @return
+     */
     public int rob2(TreeNode root) {
         return dfs(root, new HashMap<>());
     }
