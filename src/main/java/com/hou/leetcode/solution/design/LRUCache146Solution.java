@@ -1,10 +1,6 @@
-package com.hou.leetcode.solution.util;
+package com.hou.leetcode.solution.design;
 
-import com.hou.leetcode.solution.list.ListNode;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LRUCache146Solution {
