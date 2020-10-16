@@ -62,6 +62,29 @@ public class LinkedListComponents817Solution {
         return x;
     }
 
+    public int numComponents2(ListNode head, int[] G) {
+        Set<Integer> set = new HashSet<>();
+        for (int i=0; i<G.length; i++) {
+            set.add(G[i]);
+        }
+        int ans = 0;
+        while (head != null) {
+            boolean found = false;
+            while (head != null && set.contains(head.val)) {
+                head = head.next;
+                found = true;
+
+            }
+            while (head != null && !set.contains(head.val)) {
+                head = head.next;
+            }
+            if (found) {
+                ans++;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         ListNode head = new ListNode(0);
         ListNode node1 = new ListNode(1);
@@ -73,6 +96,6 @@ public class LinkedListComponents817Solution {
         ListNode node4 = new ListNode(4);
         node3.next = node4;
         LinkedListComponents817Solution solution = new LinkedListComponents817Solution();
-        System.out.println(solution.numComponents(head, new int[]{0, 1, 3}));
+        System.out.println(solution.numComponents2(head, new int[]{0, 1, 3,4}));
     }
 }
