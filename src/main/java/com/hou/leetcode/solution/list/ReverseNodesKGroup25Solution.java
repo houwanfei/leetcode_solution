@@ -1,8 +1,6 @@
 package com.hou.leetcode.solution.list;
 
 
-import java.util.List;
-
 /**
  * @Description
  * @auther houwf
